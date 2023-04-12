@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qgs-rX-Rqq">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Summary-->
+        <scene sceneID="klk-KZ-NfD">
+            <objects>
+                <viewController id="j9e-Fs-5U9" customClass="ViewController" customModule="Fitly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AQx-Fp-4VT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GJr-qz-qDn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Summary" image="heart.fill" catalog="system" id="BmE-MD-GqC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9y6-wa-fEW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023.6641221374045" y="883.80281690140851"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="FDI-W1-rVz">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Qgs-rX-Rqq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YGO-lp-Xez">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="j9e-Fs-5U9" kind="relationship" relationship="viewControllers" id="TZV-0R-Qto"/>
+                        <segue destination="OIy-HY-Ley" kind="relationship" relationship="viewControllers" id="KXb-L2-hHp"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JsE-ZE-f2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98.473282442748086" y="883.80281690140851"/>
+        </scene>
+        <!--Workouts Table View Controller-->
+        <scene sceneID="mxp-ev-SDh">
+            <objects>
+                <tableViewController storyboardIdentifier="ExerciseTableView" id="Ubb-1f-RLg" customClass="WorkoutsTableViewController" customModule="Fitly" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fJk-Or-q3c">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" textLabel="yfi-Rg-joZ" style="IBUITableViewCellStyleDefault" id="aBS-5L-OZs">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBS-5L-OZs" id="L41-Is-IJV">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yfi-Rg-joZ">
+                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="lFM-c1-3pe" kind="presentation" identifier="ExerciseDetailSegue" id="Hrc-Y7-w7B"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ubb-1f-RLg" id="AlE-K4-cXY"/>
+                            <outlet property="delegate" destination="Ubb-1f-RLg" id="h7n-7n-0Wm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="o2J-nb-DKV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AtF-hi-Fm0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1947.3282442748091" y="4.9295774647887329"/>
+        </scene>
+        <!--Exercise Detail View Controller-->
+        <scene sceneID="KAs-oe-W8o">
+            <objects>
+                <viewController storyboardIdentifier="NextVC" id="lFM-c1-3pe" customClass="ExerciseDetailViewController" customModule="Fitly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tPt-xN-jR9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqA-15-c7W">
+                                <rect key="frame" x="46.666666666666657" y="102" width="300" height="300"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="e3W-Fl-W1f"/>
+                                    <constraint firstAttribute="height" constant="300" id="oBO-bV-Jlv"/>
+                                </constraints>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ido-0y-0T4">
+                                <rect key="frame" x="166.66666666666666" y="40" width="59.666666666666657" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="5aW-2b-AcF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="InU-jO-oFr">
+                                <rect key="frame" x="186.66666666666666" y="411" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Pff-2u-lRd"/>
+                                    <constraint firstAttribute="height" constant="20" id="xXa-hK-SOP"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m2r-J5-JSS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ido-0y-0T4" firstAttribute="centerX" secondItem="nqA-15-c7W" secondAttribute="centerX" id="5kN-c5-mD3"/>
+                            <constraint firstItem="InU-jO-oFr" firstAttribute="centerY" secondItem="tPt-xN-jR9" secondAttribute="centerY" id="9fz-yX-hcv"/>
+                            <constraint firstItem="Ido-0y-0T4" firstAttribute="top" secondItem="m2r-J5-JSS" secondAttribute="top" constant="40" id="AGv-zo-soS"/>
+                            <constraint firstItem="nqA-15-c7W" firstAttribute="top" secondItem="Ido-0y-0T4" secondAttribute="bottom" constant="20" id="Kpe-nz-LWf"/>
+                            <constraint firstItem="InU-jO-oFr" firstAttribute="centerX" secondItem="tPt-xN-jR9" secondAttribute="centerX" id="orJ-9I-B3u"/>
+                            <constraint firstItem="Ido-0y-0T4" firstAttribute="centerX" secondItem="tPt-xN-jR9" secondAttribute="centerX" id="rmz-mu-nQb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HIA-V4-oGK"/>
+                    <connections>
+                        <outlet property="ActivityIndicator" destination="InU-jO-oFr" id="5k4-5a-Ydg"/>
+                        <outlet property="ExerciseTitle" destination="Ido-0y-0T4" id="kQ3-OE-J3k"/>
+                        <outlet property="WKView" destination="nqA-15-c7W" id="7cd-aQ-AMs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jr9-3M-xI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3141.2213740458014" y="4.9295774647887329"/>
+        </scene>
+        <!--Workouts-->
+        <scene sceneID="Bml-95-xYx">
+            <objects>
+                <viewController id="OIy-HY-Ley" customClass="WorkoutsViewController" customModule="Fitly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lKJ-lv-d3U">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="XPf-Iq-9z3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Workouts" image="figure.run" catalog="system" id="MlK-qt-qre"/>
+                    <navigationItem key="navigationItem" id="Laf-Yo-lVs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q23-lY-GfV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1947.3282442748091" y="1608.4507042253522"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="figure.run" catalog="system" width="115" height="128"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
