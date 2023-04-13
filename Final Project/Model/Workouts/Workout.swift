@@ -7,11 +7,16 @@
 
 import Foundation
 
-struct Workout: Identifiable, Codable {
+class Workout: Identifiable, Codable, ObservableObject {
     var id = UUID()
     
     var title: String
     var routines: [Routine]
+    
+    init(title: String, routines: [Routine]) {
+        self.title = title
+        self.routines = routines
+    }
     
     func to_string() -> String {
         var s = ""

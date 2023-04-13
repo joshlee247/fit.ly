@@ -17,24 +17,17 @@ struct WorkoutGroupBox<V: View>: GroupBoxStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         VStack {
-            HStack {
-                configuration.label
-                    .foregroundColor(color)
-                    .frame(maxWidth: 200)
-                // justify between Label + Time/Chevron
-                Spacer()
-                NavigationLink(destination: destination) {
-                    Image(systemName: "chevron.right").foregroundColor(Color(.systemGray4)).imageScale(.small)
-                }
-                .buttonStyle(.plain)
-                .controlSize(.large)
-            }
             NavigationLink(destination: destination) {
-                configuration.content.padding(.top, 1)
+                HStack {
+                    configuration.label
+                        .foregroundColor(color)
+                        .frame(maxWidth: 200)
+                    // justify between Label + Time/Chevron
+                    Spacer()
+                }
             }
+            configuration.content.padding(.top, 1)
         }
-        .padding()
-        .background(colorScheme == .dark ? Color(UIColor.tertiarySystemFill) : Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .padding(.vertical, 2)
     }
 }

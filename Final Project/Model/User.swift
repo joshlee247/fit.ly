@@ -31,6 +31,22 @@ struct User: Codable {
         isWorkingOut = false
     }
     
+    func save() {
+        // Step 2: Use an encoder to encode
+        let encoder = JSONEncoder()
+
+        do {
+            // Convert Swift to JSON (data)
+            let data = try encoder.encode(workouts)
+            let jsonString = String(data: data, encoding: .utf8)!
+            let workoutsFilePath = "\(url!)/\(kWorkoutsJson)"
+            
+            try jsonString.write(to: URL(string: workoutsFilePath)!, atomically: true, encoding: .utf8)
+        } catch {
+            print(error)
+        }
+    }
+    
     //    init() {
     //        let encoder = JSONEncoder()
     //
