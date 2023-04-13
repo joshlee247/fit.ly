@@ -49,6 +49,7 @@ class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdatin
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.setValue("Done", forKey: "cancelButtonText")
         tableView.tableHeaderView = searchController.searchBar
         filteredExercises = model.exercises
     }
@@ -127,6 +128,7 @@ class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdatin
                 if !routine!.workout.routines.contains(where: { $0.exercise.name == exercise.name }) {
                     let size = routine!.workout.routines.count
                     routine?.workout.routines.append(Routine(id: size, exercise: exercise, sets: 4, reps: 10, weight: 100))
+                    user.save()
                     cell.accessoryType = .checkmark
                 } else {
                     // Create new Alert

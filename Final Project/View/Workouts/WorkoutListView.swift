@@ -27,6 +27,7 @@ struct ExerciseListView: View {
 
 struct WorkoutListView: View {
     @ObservedObject var routine: ExerciseList
+    @ObservedObject var vm: ViewModel
     @State private var editMode = EditMode.inactive
     @State private var showSheet = false
     
@@ -50,11 +51,13 @@ struct WorkoutListView: View {
     
     private func onDelete(offsets: IndexSet) {
         routine.workout.routines.remove(atOffsets: offsets)
+        vm.user.save()
     }
 
     // 3.
     private func onMove(source: IndexSet, destination: Int) {
         routine.workout.routines.move(fromOffsets: source, toOffset: destination)
+        vm.user.save()
     }
     
     func startTimer() {
@@ -154,7 +157,7 @@ struct StoryBoardExerciseTableView: UIViewControllerRepresentable {
 
 struct WorkoutListView_Preview: PreviewProvider {
     static var previews: some View {
-        WorkoutListView(routine: ExerciseList(workout: User.sharedInstance.workouts[0]))
+        WorkoutListView(routine: ExerciseList(workout: User.sharedInstance.workouts[0]), vm: ViewModel())
     }
 }
 

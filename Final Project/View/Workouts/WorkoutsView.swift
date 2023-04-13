@@ -49,7 +49,7 @@ struct WorkoutsView: View {
         NavigationView {
             List {
                 ForEach(vm.user.workouts) { workout in
-                    TestCell(vm: vm, name: workout.title, preview: workout.to_string(), workout: workout)
+                    WorkoutCell(vm: vm, name: workout.title, preview: workout.to_string(), workout: workout)
                 }
                 .onDelete { self.deleteWorkout(at :$0) }
                 .onMove { self.moveWorkout(from: $0, to: $1) }
@@ -69,7 +69,7 @@ struct Summary_Previews: PreviewProvider {
     }
 }
 
-struct TestCell: View {
+struct WorkoutCell: View {
     @ObservedObject var vm: ViewModel
     @State var name: String = ""
     @State var preview: String
@@ -90,6 +90,6 @@ struct TestCell: View {
             }
             .padding(.top, 2)
         }
-        .groupBoxStyle(WorkoutGroupBox(color: .pink, destination: WorkoutListView(routine: ExerciseList(workout: workout))))
+            .groupBoxStyle(WorkoutGroupBox(color: .pink, destination: WorkoutListView(routine: ExerciseList(workout: workout), vm: vm)))
     }
 }
