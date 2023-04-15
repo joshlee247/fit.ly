@@ -77,6 +77,7 @@
 		0349524029DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
 		0349524129DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
 		0349524229DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
+		03A187DF29E89B660093A8C3 /* SingleExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */; };
 		03DCBA7829CBD82500B29E02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7729CBD82500B29E02 /* AppDelegate.swift */; };
 		03DCBA7A29CBD82500B29E02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */; };
 		03DCBA7F29CBD82500B29E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DCBA7D29CBD82500B29E02 /* Main.storyboard */; };
@@ -170,6 +171,7 @@
 		0349523229DE8A290039587A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0349523429DE8A290039587A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0349523E29DF383B0039587A /* TimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAttributes.swift; sourceTree = "<group>"; };
+		03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExerciseView.swift; sourceTree = "<group>"; };
 		03DCBA7429CBD82500B29E02 /* Fitly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DCBA7729CBD82500B29E02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				030C718229D7BF0E0025D913 /* WorkoutsView.swift */,
 				030C718E29D7E0F30025D913 /* WorkoutListView.swift */,
 				030C718C29D7D3FB0025D913 /* WorkoutGroupBoxStyle.swift */,
+				03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				030C718329D7BF0E0025D913 /* WorkoutsView.swift in Sources */,
 				030C718F29D7E0F30025D913 /* WorkoutListView.swift in Sources */,
 				030E8B7829D62A7D00396A96 /* ExerciseModel.swift in Sources */,
+				03A187DF29E89B660093A8C3 /* SingleExerciseView.swift in Sources */,
 				03436DDE29D5FFAC0068FC21 /* User.swift in Sources */,
 				030C718929D7C1560025D913 /* Workout.swift in Sources */,
 				03436DE229D606F00068FC21 /* SummaryViewController.swift in Sources */,

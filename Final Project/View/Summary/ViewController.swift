@@ -16,6 +16,7 @@ class ViewModel: ObservableObject {
     @Published var data: [HealthDataPoint] = [HealthDataPoint(type: "Heart Rate", icon: "heart.fill", unit: "BPM", value: 0.0, time: Date.now, color: .pink), HealthDataPoint(type: "Steps", icon: "flame.fill", unit: "steps", value: 0.0, time: Date.now, color: .orange), HealthDataPoint(type: "Active Energy", icon: "flame.fill", unit: "cal", value: 0.0, time: Date.now, color: .orange)]
     
     @Published var user = User.sharedInstance
+    @Published var workouts = User.sharedInstance.workouts
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
 }
 

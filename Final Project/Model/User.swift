@@ -13,10 +13,18 @@ let kWorkoutsJson = "Workouts.json"
 let url = manager.urls(for: .documentDirectory,
                        in: .userDomainMask).first
 
-struct User: Codable {
+class User: Codable, ObservableObject {
     var workouts: [Workout] = []
     var isWorkingOut: Bool
     
+//    init() {
+//        workouts = [
+//            Workout(title: "Test", routines: [Routine(id: 0, exercise: Exercise(id: 0, name: "Test", description: "Test", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)])])
+//        ]
+//        isWorkingOut = false
+//        save()
+//    }
+//
     init() {
         if let filepath = url?.appendingPathComponent(kWorkoutsJson).path {
             print("filepath=\(filepath)")
@@ -40,33 +48,12 @@ struct User: Codable {
             let data = try encoder.encode(workouts)
             let jsonString = String(data: data, encoding: .utf8)!
             let workoutsFilePath = "\(url!)/\(kWorkoutsJson)"
-            
+            print(workoutsFilePath)
             try jsonString.write(to: URL(string: workoutsFilePath)!, atomically: true, encoding: .utf8)
         } catch {
             print(error)
         }
     }
-    
-    //    init() {
-    //        let encoder = JSONEncoder()
-    //
-    //        do {
-    //            // Convert Swift to JSON (data)
-    //            let data = try encoder.encode(workouts)
-    //
-    //            // Convert JSON(data) into JSON(string)
-    //            let jsonString = String(data: data, encoding: .utf8)!
-    //
-    //            let flashcardsFilePath = "\(url!)/\(kWorkoutsJson)"
-    //            print(flashcardsFilePath)
-    //
-    //            try jsonString.write(to: URL(string: flashcardsFilePath)!, atomically: true, encoding: .utf8)
-    //
-    ////            UserDefaults.standard.set(data, forKey: kFlashcardsArrayKey)
-    //        } catch {
-    //            print(error)
-    //        }
-    //    }
     
     static let sharedInstance = User()
 }

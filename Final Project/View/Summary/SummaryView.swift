@@ -38,7 +38,9 @@ struct SummaryView: View {
                 VStack(spacing: 8) {
                     ForEach(vm.data) { data in
                         GroupBox(label: Label(data.type, systemImage: data.icon).font(.system(size: 12, weight: .semibold, design: .rounded))) {
-                            HealthValueView(value: "\(Int(data.value))", unit: data.unit)
+                            HStack {
+                                HealthValueView(value: "\(Int(data.value))", unit: data.unit)
+                            }
                         }.groupBoxStyle(HealthGroupBoxStyle(color: data.color, destination: Text("\(data.type)"), date: data.time))
                     }
                 }.padding()

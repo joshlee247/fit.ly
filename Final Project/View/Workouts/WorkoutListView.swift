@@ -11,9 +11,13 @@ import ActivityKit
 
 class ExerciseList: ObservableObject {
     @Published var workout: Workout
+    @Published var routines: [Routine]
+    @Published var user: User
     
-    init(workout: Workout) {
+    init(workout: Workout, routines: [Routine], user: User) {
         self.workout = workout
+        self.routines = routines
+        self.user = user
     }
 }
 
@@ -26,8 +30,9 @@ struct ExerciseListView: View {
 }
 
 struct WorkoutListView: View {
-    @ObservedObject var routine: ExerciseList
+    @ObservedObject var exerciseList: ExerciseList
     @ObservedObject var vm: ViewModel
+    @ObservedObject var workout: Workout
     @State private var editMode = EditMode.inactive
     @State private var showSheet = false
     
@@ -50,13 +55,13 @@ struct WorkoutListView: View {
     }
     
     private func onDelete(offsets: IndexSet) {
-        routine.workout.routines.remove(atOffsets: offsets)
+        workout.routines.remove(atOffsets: offsets)
         vm.user.save()
     }
 
     // 3.
     private func onMove(source: IndexSet, destination: Int) {
-        routine.workout.routines.move(fromOffsets: source, toOffset: destination)
+        workout.routines.move(fromOffsets: source, toOffset: destination)
         vm.user.save()
     }
     
@@ -93,27 +98,25 @@ struct WorkoutListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(routine.workout.routines) { routine in
-                    HStack {
-                        Button(action: {
-                            print("Round Action")
-                            }) {
-                                VStack {
-                                    Text("\(routine.weight, specifier: "%.0f")")
-                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                    Text("LBS")
-                                    .font(.system(size: 8, weight: .medium, design: .rounded))
-                                }
-                                .frame(width: 45, height: 45)
-                                .foregroundColor(Color.white)
-                                .multilineTextAlignment(.center)
-                                .background(Color.pink)
-                                .clipShape(Circle())
+                ForEach(workout.routines) { routine in
+                    NavigationLink(destination: SingleExerciseView(vm: vm, routine: RoutineObj(routine: routine, sets: routine.sets))) {
+                        HStack {
+                            VStack {
+                                Text(routine.sets.isEmpty ? "--" : "\(routine.sets[0].weight, specifier: "%.0f")")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                Text("LBS")
+                                .font(.system(size: 8, weight: .medium, design: .rounded))
+                            }
+                            .frame(width: 45, height: 45)
+                            .foregroundColor(Color.white)
+                            .multilineTextAlignment(.center)
+                            .background(Color.pink)
+                            .clipShape(Circle())
+                            VStack(alignment: .leading) {
+                                Text(routine.exercise.name).font(.system(size: 16, design: .rounded))
+                                Text(routine.sets.isEmpty ? "--" :"\(routine.sets.count) sets, \(routine.sets[0].reps) reps").font(.footnote).foregroundColor(Color(.systemGray))
+                            }.padding(8)
                         }
-                        VStack(alignment: .leading) {
-                            Text(routine.exercise.name).font(.system(size: 16, design: .rounded))
-                            Text("\(routine.sets) sets, \(routine.reps) reps").font(.footnote).foregroundColor(Color(.systemGray))
-                        }.padding(8)
                     }
                 }
                 .onDelete(perform: onDelete)
@@ -124,16 +127,16 @@ struct WorkoutListView: View {
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 18, weight: .semibold, design: .rounded))
             }
-            .disabled(routine.workout.routines.isEmpty)
+            .disabled(exerciseList.workout.routines.isEmpty)
             .foregroundColor(.white)
-            .background(routine.workout.routines.isEmpty ? Color(UIColor.tertiarySystemFill) : Color.pink)
+            .background(exerciseList.workout.routines.isEmpty ? Color(UIColor.tertiarySystemFill) : Color.pink)
             .cornerRadius(15)
             .padding()
         }
         .background(Color(.systemGroupedBackground))
-        .navigationTitle(routine.workout.title)
+        .navigationTitle(exerciseList.workout.title)
         .sheet(isPresented: $showSheet, content: {
-            ExerciseListView(routine: routine)
+            ExerciseListView(routine: exerciseList)
         })
         .navigationBarItems(trailing: addButton)
     }
@@ -157,7 +160,7 @@ struct StoryBoardExerciseTableView: UIViewControllerRepresentable {
 
 struct WorkoutListView_Preview: PreviewProvider {
     static var previews: some View {
-        WorkoutListView(routine: ExerciseList(workout: User.sharedInstance.workouts[0]), vm: ViewModel())
+        WorkoutListView(exerciseList: ExerciseList(workout: Workout(title: "test", routines: [Routine(id: 0, exercise: Exercise(id: 0, name: "Push ups", description: "push up", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 135, reps: 8, isCompleted: false), WorkingSet(id: UUID(), weight: 155, reps: 10, isCompleted: false), WorkingSet(id: UUID(), weight: 155, reps: 8, isCompleted: false)])]), routines: [Routine(id: 0, exercise: Exercise(id: 0, name: "Push ups", description: "push up", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 135, reps: 8, isCompleted: false), WorkingSet(id: UUID(), weight: 155, reps: 10, isCompleted: false), WorkingSet(id: UUID(), weight: 155, reps: 8, isCompleted: false)])], user: User.sharedInstance), vm: ViewModel(), workout: Workout(title: "Test", routines: []))
     }
 }
 

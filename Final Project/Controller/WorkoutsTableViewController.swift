@@ -127,9 +127,10 @@ class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdatin
                 let exercise = filtered[indexPath.row]
                 if !routine!.workout.routines.contains(where: { $0.exercise.name == exercise.name }) {
                     let size = routine!.workout.routines.count
-                    routine?.workout.routines.append(Routine(id: size, exercise: exercise, sets: 4, reps: 10, weight: 100))
-                    user.save()
+                    routine?.workout.routines.append(Routine(id: size, exercise: exercise, sets: []))
+                    routine?.user.save()
                     cell.accessoryType = .checkmark
+                    routine?.objectWillChange.send()
                 } else {
                     // Create new Alert
                     var dialogMessage = UIAlertController(title: "Alert", message: "This exercise has been added to your workout already!", preferredStyle: .alert)
