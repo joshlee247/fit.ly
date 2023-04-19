@@ -21,7 +21,7 @@ class WorkoutsViewController: UIViewController {
         // Do any additional setup after loading the view.
 //        addChild(contentView)
 //        view.addSubview(contentView.view)
-        self.vm = ViewModel()
+        self.vm = ViewModel.sharedInstance
         let contentView = WorkoutsView(vm: self.vm)
         let hostingController = UIHostingController(rootView: contentView)
         addChild(hostingController)

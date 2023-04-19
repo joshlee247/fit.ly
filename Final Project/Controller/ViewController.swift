@@ -17,14 +17,17 @@ class ViewModel: ObservableObject {
     
     @Published var user = User.sharedInstance
     @Published var workouts = User.sharedInstance.workouts
+    @Published var completedWorkouts = User.sharedInstance.completedWorkouts
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
+    
+    static let sharedInstance = ViewModel()
 }
 
 class ViewController: UIViewController {
 
     let data = HealthData()
     var heartRateData = [HealthDataPoint]()
-    private var vm: ViewModel!
+    var vm: ViewModel!
     var weatherModel = WeatherModel.shared
     
     func loadWeather() {
@@ -39,7 +42,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // adding SummaryView (SwiftUI) into Storyboard
-        self.vm = ViewModel()
+        self.vm = ViewModel.sharedInstance
         let contentView = SummaryView(vm: self.vm)
         let hostingController = UIHostingController(rootView: contentView)
         addChild(hostingController)

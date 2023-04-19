@@ -83,6 +83,8 @@ struct WorkoutListView: View {
                 await activity?.end(using: state, dismissalPolicy: .immediate)
             }
             
+            vm.completedWorkouts.append(CompletedWorkout(date: Date.now, timeElapsed: Date.now.timeIntervalSince(startTime)))
+            vm.objectWillChange.send()
             self.startTime = nil
         }
     }

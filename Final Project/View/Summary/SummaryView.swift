@@ -19,6 +19,16 @@ struct SummaryView: View {
         vm.heartRateData = heartRate
     }
     
+    func formatTime(time: TimeInterval) -> String? {
+        let formatter = DateComponentsFormatter()
+        
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        
+        return formatter.string(from: time)
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -36,12 +46,21 @@ struct SummaryView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal)
                 VStack(spacing: 8) {
-                    ForEach(vm.data) { data in
-                        GroupBox(label: Label(data.type, systemImage: data.icon).font(.system(size: 12, weight: .semibold, design: .rounded))) {
+                    if !vm.completedWorkouts.isEmpty {
+                        GroupBox(label: Label("Latest Workout", systemImage: "figure.run").font(.system(size: 12, weight: .semibold, design: .rounded))) {
                             HStack {
-                                HealthValueView(value: "\(Int(data.value))", unit: data.unit)
+                                HealthValueView(value: "\(formatTime(time: vm.completedWorkouts[0].timeElapsed)!)", unit: "")
                             }
-                        }.groupBoxStyle(HealthGroupBoxStyle(color: data.color, destination: Text("\(data.type)"), date: data.time))
+                        }.groupBoxStyle(LatestWorkoutGroupBoxStyle(color: Color(UIColor.green), destination: Text("Latest Workout"), date: Date.now))
+                    }
+                    ForEach(vm.data) { data in
+                        if data.value != 0 || data.unit == "steps" {
+                            GroupBox(label: Label(data.type, systemImage: data.icon).font(.system(size: 12, weight: .semibold, design: .rounded))) {
+                                HStack {
+                                    HealthValueView(value: "\(Int(data.value))", unit: data.unit)
+                                }
+                            }.groupBoxStyle(HealthGroupBoxStyle(color: data.color, destination: Text("\(data.type)"), date: data.time))
+                        }
                     }
                 }.padding()
             }

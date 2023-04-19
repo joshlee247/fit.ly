@@ -19,7 +19,7 @@ class RoutineObj: ObservableObject {
 
 struct SingleExerciseView: View {
     @ObservedObject var vm: ViewModel
-    @ObservedObject var routine: RoutineObj
+    @StateObject var routine: RoutineObj
     @State private var editMode = EditMode.inactive
     
     private func addWorkout() {
@@ -74,11 +74,12 @@ struct SingleExerciseView: View {
                     .padding(.vertical, 10)
                     .swipeActions(edge: .trailing) {
                         Button {
-                            print("Hi")
+                            workset.isCompleted.toggle()
+                            print("toggled complete to: \(workset.isCompleted)")
                         } label: {
-                            Label("Completed", systemImage: "checkmark.circle.fill")
+                            workset.isCompleted ? Label("X", systemImage: "x.circles") : Label("Completed", systemImage: "checkmark.circle.fill")
                         }
-                        .tint(.green)
+                        .tint(workset.isCompleted ? .red : .green)
                     }
                 }
             }

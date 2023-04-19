@@ -77,6 +77,7 @@
 		0349524029DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
 		0349524129DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
 		0349524229DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
+		037F6DAF29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */; };
 		03A187DF29E89B660093A8C3 /* SingleExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */; };
 		03DCBA7829CBD82500B29E02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7729CBD82500B29E02 /* AppDelegate.swift */; };
 		03DCBA7A29CBD82500B29E02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */; };
@@ -171,6 +172,7 @@
 		0349523229DE8A290039587A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0349523429DE8A290039587A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0349523E29DF383B0039587A /* TimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAttributes.swift; sourceTree = "<group>"; };
+		037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestWorkoutGroupBoxStyle.swift; sourceTree = "<group>"; };
 		03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExerciseView.swift; sourceTree = "<group>"; };
 		03DCBA7429CBD82500B29E02 /* Fitly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DCBA7729CBD82500B29E02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -238,7 +240,6 @@
 		030C718029D7BEBB0025D913 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
-				03436DCC29D562310068FC21 /* ViewController.swift */,
 				03436DD429D5F8370068FC21 /* SummaryView.swift */,
 				03436DD229D5F4DC0068FC21 /* HealthValueView.swift */,
 				03436DD629D5FC4E0068FC21 /* HealthLabel.swift */,
@@ -404,6 +405,7 @@
 				03DCBA7729CBD82500B29E02 /* AppDelegate.swift */,
 				03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */,
 				030D253029CBE256002E550D /* MetricsView.swift */,
+				037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,6 +413,7 @@
 		03DCBAA929CBD88400B29E02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				03436DCC29D562310068FC21 /* ViewController.swift */,
 				030C718429D7C0650025D913 /* WorkoutsViewController.swift */,
 				0304063129DBF1560075CD2D /* ExerciseDetailViewController.swift */,
 				03436DE129D606F00068FC21 /* SummaryViewController.swift */,
@@ -644,6 +647,7 @@
 				0334A1C229DE19C20012097C /* WeatherGroupBoxStyle.swift in Sources */,
 				030C718329D7BF0E0025D913 /* WorkoutsView.swift in Sources */,
 				030C718F29D7E0F30025D913 /* WorkoutListView.swift in Sources */,
+				037F6DAF29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift in Sources */,
 				030E8B7829D62A7D00396A96 /* ExerciseModel.swift in Sources */,
 				03A187DF29E89B660093A8C3 /* SingleExerciseView.swift in Sources */,
 				03436DDE29D5FFAC0068FC21 /* User.swift in Sources */,

@@ -27,3 +27,13 @@ class Workout: Identifiable, Codable, ObservableObject {
         return s
     }
 }
+
+class CompletedWorkout: Identifiable, Codable, ObservableObject {
+    var date: Date
+    let timeElapsed: TimeInterval
+    
+    init(date: Date, timeElapsed: TimeInterval) {
+        self.date = date
+        self.timeElapsed = timeElapsed
+    }
+}

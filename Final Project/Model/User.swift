@@ -9,12 +9,14 @@ import Foundation
 
 let kWorkoutsArray = "WorkoutsArray"
 let kWorkoutsJson = "Workouts.json"
+let kCompletedWorkoutsJson = "CompletedWorkouts.json"
 // find the Documents directory
 let url = manager.urls(for: .documentDirectory,
                        in: .userDomainMask).first
 
 class User: Codable, ObservableObject {
     var workouts: [Workout] = []
+    var completedWorkouts: [CompletedWorkout] = []
     var isWorkingOut: Bool
     
 //    init() {
@@ -29,13 +31,33 @@ class User: Codable, ObservableObject {
         if let filepath = url?.appendingPathComponent(kWorkoutsJson).path {
             print("filepath=\(filepath)")
             do {
-                  let data = try Data(contentsOf: URL(fileURLWithPath: filepath), options: .mappedIfSafe)
-                  let jsonResult = try? JSONDecoder().decode([Workout].self, from: data)
-                  workouts = jsonResult!
+                let data = try Data(contentsOf: URL(fileURLWithPath: filepath), options: .mappedIfSafe)
+                let jsonResult = try? JSONDecoder().decode([Workout].self, from: data)
+                if let res = jsonResult {
+                    workouts = res
+                } else {
+                    workouts = []
+                }
             } catch {
                 print(error)
             }
         }
+        
+        if let filepath = url?.appendingPathComponent(kCompletedWorkoutsJson).path {
+            print("filepath=\(filepath)")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: filepath), options: .mappedIfSafe)
+                let jsonResult = try? JSONDecoder().decode([CompletedWorkout].self, from: data)
+                if let res = jsonResult {
+                    completedWorkouts = res
+                } else {
+                    completedWorkouts = []
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
         isWorkingOut = false
     }
     
@@ -53,6 +75,17 @@ class User: Codable, ObservableObject {
         } catch {
             print(error)
         }
+        
+//        do {
+//            // Convert Swift to JSON (data)
+//            let data = try encoder.encode(completedWorkouts)
+//            let jsonString = String(data: data, encoding: .utf8)!
+//            let completedWorkoutsFilePath = "\(url!)/\(kCompletedWorkoutsJson)"
+//            print(completedWorkoutsFilePath)
+//            try jsonString.write(to: URL(string: completedWorkoutsFilePath)!, atomically: true, encoding: .utf8)
+//        } catch {
+//            print(error)
+//        }
     }
     
     static let sharedInstance = User()

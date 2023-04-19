@@ -22,11 +22,13 @@ struct WorkoutsView: View {
     
     private func addWorkout() {
         vm.workouts.append(Workout(title: "", routines: []))
+        vm.user.workouts = vm.workouts
         vm.user.save()
     }
     
     func deleteWorkout(at: IndexSet) {
         vm.workouts.remove(atOffsets: at)
+        vm.user.workouts = vm.workouts
         vm.user.save()
     }
     
