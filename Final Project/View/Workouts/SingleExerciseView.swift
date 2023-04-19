@@ -24,6 +24,7 @@ struct SingleExerciseView: View {
     
     private func addWorkout() {
         // kinda hacky but it works
+        // routine.routine = observable object
         routine.routine.sets.append(WorkingSet(id: UUID(), weight: 100, reps: 12, isCompleted: false))
         routine.sets.append(WorkingSet(id: UUID(), weight: 100, reps: 12, isCompleted: false))
         vm.user.save()
@@ -74,14 +75,25 @@ struct SingleExerciseView: View {
                         }
                     }
                     .padding(.vertical, 10)
-                    .swipeActions(edge: .trailing) {
+                    .swipeActions(edge: .leading) {
                         Button {
-                            workset.isCompleted.toggle()
-                            print("toggled complete to: \(workset.isCompleted)")
+                            routine.sets[i].isCompleted.toggle()
+                            print("toggled complete to: \(routine.sets[i].isCompleted)")
                         } label: {
-                            workset.isCompleted ? Label("X", systemImage: "x.circles") : Label("Completed", systemImage: "checkmark.circle.fill")
+                            routine.sets[i].isCompleted ? Label("X", systemImage: "x.circle") : Label("Completed", systemImage: "checkmark.circle.fill")
                         }
-                        .tint(workset.isCompleted ? .red : .green)
+                        .tint(routine.sets[i].isCompleted ? .red : .green)
+                    }
+                    
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            print("Deleting set")
+                            // this one works
+                            routine.routine.sets.remove(at: i)
+                            vm.user.save()
+                        } label: {
+                            Label("Delete", systemImage: "trash.fill")
+                        }
                     }
                 }
             }
