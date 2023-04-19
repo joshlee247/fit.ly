@@ -19,10 +19,12 @@ class RoutineObj: ObservableObject {
 
 struct SingleExerciseView: View {
     @ObservedObject var vm: ViewModel
-    @StateObject var routine: RoutineObj
+    @ObservedObject var routine: RoutineObj
     @State private var editMode = EditMode.inactive
     
     private func addWorkout() {
+        // kinda hacky but it works
+        routine.routine.sets.append(WorkingSet(id: UUID(), weight: 100, reps: 12, isCompleted: false))
         routine.sets.append(WorkingSet(id: UUID(), weight: 100, reps: 12, isCompleted: false))
         vm.user.save()
     }
@@ -91,9 +93,9 @@ struct SingleExerciseView: View {
     }
 }
 
-struct SingleExerciseView_Previews: PreviewProvider {
-    static var previews: some View {
-        SingleExerciseView(vm: ViewModel(), routine: RoutineObj(routine: Routine(id: 0, exercise: Exercise(id: 0, name: "Bench Press", description: "Push bar up", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)]), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)]))
-        
-    }
-}
+//struct SingleExerciseView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SingleExerciseView(vm: ViewModel(), routine: RoutineObj(routine: Routine(id: 0, exercise: Exercise(id: 0, name: "Bench Press", description: "Push bar up", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)]), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)]))
+//
+//    }
+//}
