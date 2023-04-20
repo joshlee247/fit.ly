@@ -21,6 +21,8 @@ struct HealthDataPoint: Identifiable {
 }
 
 struct HealthData {
+    static let sharedInstance = HealthData()
+    
     var currentHeartRate: Double = 0
     
     let healthStore: HKHealthStore = HKHealthStore()

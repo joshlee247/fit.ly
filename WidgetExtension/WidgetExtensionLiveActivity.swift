@@ -65,7 +65,7 @@ struct WorkoutActivityView: View {
                     .multilineTextAlignment(.trailing)
             }
             HStack {
-                Label("Bench Press", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
+                Label("\(context.state.currentExercise)", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
                 Spacer()
                 Text("2 sets remaining").font(.system(size: 12, weight: .regular, design: .rounded)).foregroundColor(Color(UIColor.systemGray))
             }
@@ -141,7 +141,7 @@ struct WidgetExtensionLiveActivity: Widget {
 
 struct WidgetExtensionLiveActivity_Previews: PreviewProvider {
     static let attributes = TimerAttributes()
-    static let contentState = TimerAttributes.TimerStatus(startTime: .now)
+    static let contentState = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
 
     static var previews: some View {
         attributes

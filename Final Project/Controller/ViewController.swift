@@ -19,13 +19,14 @@ class ViewModel: ObservableObject {
     @Published var workouts = User.sharedInstance.workouts
     @Published var completedWorkouts = User.sharedInstance.completedWorkouts
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
+    var currentExercise: String? = nil
     
     static let sharedInstance = ViewModel()
 }
 
 class ViewController: UIViewController {
 
-    let data = HealthData()
+    let data = HealthData.sharedInstance
     var heartRateData = [HealthDataPoint]()
     var vm: ViewModel!
     var weatherModel = WeatherModel.shared
