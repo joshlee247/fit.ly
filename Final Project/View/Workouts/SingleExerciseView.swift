@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityKit
 
 class RoutineObj: ObservableObject {
     @Published var routine: Routine
@@ -24,6 +25,9 @@ struct SingleExerciseView: View {
     @State private var isShowingAddSheet = false
     @State private var isShowingEditSheet = false
     @State private var set_to_edit = -1
+    
+    @State var activity: Activity<TimerAttributes>?
+    @State var startTime: Date?
     
     private func addWorkout() {
         isShowingAddSheet.toggle()
@@ -129,6 +133,21 @@ struct SingleExerciseView: View {
                   onDismiss: didDismiss) {
                EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit)
            }
+        }
+        .onAppear {
+            vm.currentExercise = routine.routine.exercise.name
+            print("\(vm.currentExercise)")
+            if let a = activity {
+                var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--")
+                
+                if let exercise = vm.currentExercise {
+                    state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise)
+                }
+                
+                Task {
+                    await a.update(using: state)
+                }
+            }
         }
     }
 }

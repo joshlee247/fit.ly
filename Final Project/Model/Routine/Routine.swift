@@ -11,11 +11,32 @@ class Routine: Identifiable, Codable, ObservableObject {
     var id: Int
     let exercise: Exercise
     var sets: [WorkingSet]
+    var isCurrent: Bool
     
     init(id: Int, exercise: Exercise, sets: [WorkingSet]) {
         self.id = id
         self.exercise = exercise
         self.sets = sets
+        self.isCurrent = false
+    }
+    
+    func getSetsCompleted() -> Int {
+        var count = 0
+        for s in sets {
+            if s.isCompleted {
+                count += 1
+            }
+        }
+        return count
+    }
+    
+    func isCompleted() -> Bool {
+        for s in sets {
+            if !s.isCompleted {
+                return false
+            }
+        }
+        return true
     }
 }
 
