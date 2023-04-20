@@ -21,15 +21,10 @@ struct WidgetExtensionAttributes: ActivityAttributes {
 
 struct RoundedRectProgressViewStyle: ProgressViewStyle {
     func makeBody(configuration: Configuration) -> some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 14)
-                .frame(width: .infinity, height: 5)
-                .foregroundColor(Color(UIColor.systemGray5))
-            
-            RoundedRectangle(cornerRadius: 14)
-                .frame(width: CGFloat(configuration.fractionCompleted ?? 0) * 340, height: 5)
-                .foregroundColor(.pink)
-        }
+        ProgressView(configuration)
+            .tint(.pink)
+            .padding(.top, -15)
+            .scaleEffect(x: 1, y: 1.5, anchor: .center)
     }
 }
 
@@ -74,7 +69,7 @@ struct WorkoutActivityView: View {
                 }
             }
             if let completed = context.state.sets_completed, let total = context.state.total_sets {
-                ProgressView("Downloading…", value: (((Double(completed) / Double(total)) * 100)), total: 100)
+                ProgressView("", value: (((Double(completed) / Double(total)) * 100)), total: 100)
             }
         }
         .progressViewStyle(RoundedRectProgressViewStyle())
