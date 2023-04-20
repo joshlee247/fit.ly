@@ -33,6 +33,20 @@ struct SingleExerciseView: View {
         isShowingAddSheet.toggle()
     }
     
+    func updateSetsLiveActivity(completed: Int, total: Int) {
+        if let a = activity {
+            var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--", sets_completed: completed, total_sets: total)
+            
+            if let exercise = vm.currentExercise {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total)
+            }
+            
+            Task {
+                await a.update(using: state)
+            }
+        }
+    }
+    
     private var addButton: some View {
         switch editMode {
         case .inactive:
@@ -91,6 +105,8 @@ struct SingleExerciseView: View {
                             routine.objectWillChange.send()
                             routine.sets[i].isCompleted.toggle()
                             print("toggled complete to: \(routine.sets[i].isCompleted)")
+                            updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
+                            
                         } label: {
                             routine.sets[i].isCompleted ? Label("X", systemImage: "xmark.circle.fill") : Label("Completed", systemImage: "checkmark.circle.fill")
                         }
@@ -137,17 +153,8 @@ struct SingleExerciseView: View {
         .onAppear {
             vm.currentExercise = routine.routine.exercise.name
             print("\(vm.currentExercise)")
-            if let a = activity {
-                var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--")
-                
-                if let exercise = vm.currentExercise {
-                    state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise)
-                }
-                
-                Task {
-                    await a.update(using: state)
-                }
-            }
+            
+            updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
         }
     }
 }
@@ -172,6 +179,9 @@ struct AddSingleExerciseView: View {
         routineObj.routine.sets.append(WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
         routineObj.sets.append(WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
         vm.user.save()
+        
+//        updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
+        
         dismiss()
     }
     

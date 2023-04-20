@@ -14,8 +14,9 @@ struct TimerAttributes: ActivityAttributes {
     
     public struct ContentState: Codable, Hashable {
         var startTime: Date
-        var currentExercise: String
-//        var sets_remaining: Int
+        var currentExercise: String?
+        var sets_completed: Int?
+        var total_sets: Int?
 //        var heartrate: Double
     }
 }

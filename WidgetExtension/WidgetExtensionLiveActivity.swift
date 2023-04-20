@@ -65,11 +65,17 @@ struct WorkoutActivityView: View {
                     .multilineTextAlignment(.trailing)
             }
             HStack {
-                Label("\(context.state.currentExercise)", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
+                if let currentExercise = context.state.currentExercise {
+                    Label("\(currentExercise)", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
+                }
                 Spacer()
-                Text("2 sets remaining").font(.system(size: 12, weight: .regular, design: .rounded)).foregroundColor(Color(UIColor.systemGray))
+                if let completed = context.state.sets_completed, let total = context.state.total_sets {
+                    Text("\(total - completed) sets remaining").font(.system(size: 12, weight: .regular, design: .rounded)).foregroundColor(Color(UIColor.systemGray))
+                }
             }
-            ProgressView("Downloading…", value: 50, total: 100)
+            if let completed = context.state.sets_completed, let total = context.state.total_sets {
+                ProgressView("Downloading…", value: (((Double(completed) / Double(total)) * 100)), total: 100)
+            }
         }
         .progressViewStyle(RoundedRectProgressViewStyle())
         .activityBackgroundTint(colorScheme == .dark ? Color.black : Color.white)
