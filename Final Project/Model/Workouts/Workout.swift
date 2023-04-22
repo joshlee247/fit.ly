@@ -36,4 +36,11 @@ class CompletedWorkout: Identifiable, Codable, ObservableObject {
         self.date = date
         self.timeElapsed = timeElapsed
     }
+    
+    init(date: String, timeElapsed: TimeInterval) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMddyyyy"
+        self.date = formatter.date(from: date) ?? Date.distantPast
+        self.timeElapsed = timeElapsed
+    }
 }

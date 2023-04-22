@@ -93,6 +93,8 @@ struct WorkoutListView: View {
             }
             
             vm.completedWorkouts.append(CompletedWorkout(date: Date.now, timeElapsed: Date.now.timeIntervalSince(startTime)))
+            vm.user.completedWorkouts = vm.completedWorkouts
+            vm.user.save()
             vm.objectWillChange.send()
             self.startTime = nil
         }

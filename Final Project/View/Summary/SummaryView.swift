@@ -49,9 +49,9 @@ struct SummaryView: View {
                     if !vm.completedWorkouts.isEmpty {
                         GroupBox(label: Label("Latest Workout", systemImage: "figure.run").font(.system(size: 12, weight: .semibold, design: .rounded))) {
                             HStack {
-                                HealthValueView(value: "\(formatTime(time: vm.completedWorkouts[0].timeElapsed)!)", unit: "")
+                                HealthValueView(value: "\(formatTime(time: vm.completedWorkouts[vm.completedWorkouts.count - 1].timeElapsed)!)", unit: "")
                             }
-                        }.groupBoxStyle(LatestWorkoutGroupBoxStyle(color: Color(UIColor.green), destination: Text("Latest Workout"), date: Date.now))
+                        }.groupBoxStyle(LatestWorkoutGroupBoxStyle(color: Color(UIColor.green), destination: Text("Latest Workout"), date: vm.completedWorkouts[vm.completedWorkouts.count - 1].date))
                     }
                     ForEach(vm.data) { data in
                         if data.value != 0 || data.unit == "steps" {

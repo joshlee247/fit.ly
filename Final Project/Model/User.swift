@@ -76,16 +76,16 @@ class User: Codable, ObservableObject {
             print(error)
         }
         
-//        do {
-//            // Convert Swift to JSON (data)
-//            let data = try encoder.encode(completedWorkouts)
-//            let jsonString = String(data: data, encoding: .utf8)!
-//            let completedWorkoutsFilePath = "\(url!)/\(kCompletedWorkoutsJson)"
-//            print(completedWorkoutsFilePath)
-//            try jsonString.write(to: URL(string: completedWorkoutsFilePath)!, atomically: true, encoding: .utf8)
-//        } catch {
-//            print(error)
-//        }
+        do {
+            // Convert Swift to JSON (data)
+            let data = try encoder.encode(completedWorkouts)
+            let jsonString = String(data: data, encoding: .utf8)!
+            let completedWorkoutsFilePath = "\(url!)/\(kCompletedWorkoutsJson)"
+            print(completedWorkoutsFilePath)
+            try jsonString.write(to: URL(string: completedWorkoutsFilePath)!, atomically: true, encoding: .utf8)
+        } catch {
+            print(error)
+        }
     }
     
     static let sharedInstance = User()

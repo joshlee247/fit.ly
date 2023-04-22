@@ -79,6 +79,7 @@
 		0349524229DF383B0039587A /* TimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349523E29DF383B0039587A /* TimerAttributes.swift */; };
 		037F6DAF29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */; };
 		03A187DF29E89B660093A8C3 /* SingleExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */; };
+		03D3D94029F35DD500AC0FBC /* CompletedWorkoutsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D3D93F29F35DD500AC0FBC /* CompletedWorkoutsChart.swift */; };
 		03DCBA7829CBD82500B29E02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7729CBD82500B29E02 /* AppDelegate.swift */; };
 		03DCBA7A29CBD82500B29E02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */; };
 		03DCBA7F29CBD82500B29E02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DCBA7D29CBD82500B29E02 /* Main.storyboard */; };
@@ -174,6 +175,7 @@
 		0349523E29DF383B0039587A /* TimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAttributes.swift; sourceTree = "<group>"; };
 		037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestWorkoutGroupBoxStyle.swift; sourceTree = "<group>"; };
 		03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExerciseView.swift; sourceTree = "<group>"; };
+		03D3D93F29F35DD500AC0FBC /* CompletedWorkoutsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedWorkoutsChart.swift; sourceTree = "<group>"; };
 		03DCBA7429CBD82500B29E02 /* Fitly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DCBA7729CBD82500B29E02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -323,6 +325,14 @@
 			path = Timer;
 			sourceTree = "<group>";
 		};
+		03D3D93E29F35DCB00AC0FBC /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				03D3D93F29F35DD500AC0FBC /* CompletedWorkoutsChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		03DCBA6B29CBD82500B29E02 = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +405,7 @@
 		03DCBAA829CBD87F00B29E02 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03D3D93E29F35DCB00AC0FBC /* Charts */,
 				0304063029DBF13C0075CD2D /* Exercises */,
 				030C718129D7BEF40025D913 /* Workouts */,
 				030C718029D7BEBB0025D913 /* Summary */,
@@ -623,6 +634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D3D94029F35DD500AC0FBC /* CompletedWorkoutsChart.swift in Sources */,
 				03436DD129D5F3680068FC21 /* HealthGroupBoxStyle.swift in Sources */,
 				03436DD329D5F4DC0068FC21 /* HealthValueView.swift in Sources */,
 				030E8B7A29D632C200396A96 /* WorkoutsTableViewController.swift in Sources */,
