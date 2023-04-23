@@ -176,6 +176,7 @@
 		037F6DAE29EF400B001177B4 /* LatestWorkoutGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestWorkoutGroupBoxStyle.swift; sourceTree = "<group>"; };
 		03A187DE29E89B660093A8C3 /* SingleExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExerciseView.swift; sourceTree = "<group>"; };
 		03D3D93F29F35DD500AC0FBC /* CompletedWorkoutsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedWorkoutsChart.swift; sourceTree = "<group>"; };
+		03D3D94129F5A69500AC0FBC /* test.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = test.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		03DCBA7429CBD82500B29E02 /* Fitly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fitly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DCBA7729CBD82500B29E02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03DCBA7929CBD82500B29E02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 		03DCBA6B29CBD82500B29E02 = {
 			isa = PBXGroup;
 			children = (
+				03D3D94129F5A69500AC0FBC /* test.playground */,
 				03DCBA7629CBD82500B29E02 /* Final Project */,
 				03DCBA8D29CBD82600B29E02 /* Final ProjectTests */,
 				03DCBA9729CBD82600B29E02 /* Final ProjectUITests */,

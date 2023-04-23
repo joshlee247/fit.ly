@@ -82,6 +82,6 @@ struct WorkoutCell: View {
             }
             .padding(.top, 2)
         }
-            .groupBoxStyle(WorkoutGroupBox(color: .pink, destination: WorkoutListView(exerciseList: ExerciseList(workout: workout, routines: workout.routines, user: User.sharedInstance), vm: vm, workout: workout)))
+            .groupBoxStyle(WorkoutGroupBox(color: .pink, destination: WorkoutListView(exerciseList: ExerciseList(workout: workout, routines: workout.routines, user: User.sharedInstance), vm: vm, workout: workout, startTime: vm.startTime)))
     }
 }

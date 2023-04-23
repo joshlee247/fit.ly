@@ -36,8 +36,8 @@ struct WorkoutListView: View {
     @State private var editMode = EditMode.inactive
     @State private var showSheet = false
     
-    @State private var isStarted: Bool = false
-    @State private var startTime: Date? = nil
+//    @State private var isStarted: Bool = false
+    @State var startTime: Date? = nil
     
     @State private var activity: Activity<TimerAttributes>? = nil
     
@@ -66,10 +66,11 @@ struct WorkoutListView: View {
     }
     
     func startTimer() {
-        isStarted.toggle()
+        vm.user.isWorkingOut.toggle()
         
-        if isStarted {
+        if vm.user.isWorkingOut {
             startTime = .now
+            vm.startTime = .now
             // start live activity
             let attributes = TimerAttributes()
             var state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
@@ -97,6 +98,8 @@ struct WorkoutListView: View {
             vm.user.save()
             vm.objectWillChange.send()
             self.startTime = nil
+            vm.startTime = nil
+            vm.user.isWorkingOut = false
         }
     }
 
@@ -139,7 +142,7 @@ struct WorkoutListView: View {
                 .onDelete(perform: onDelete)
             }
             Button(action: startTimer) {
-                Text(isStarted ? "End Workout" : "Start Workout")
+                Text(vm.user.isWorkingOut ? "End Workout" : "Start Workout")
                     .padding()
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 18, weight: .semibold, design: .rounded))

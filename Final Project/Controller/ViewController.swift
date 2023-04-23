@@ -10,6 +10,8 @@ import SwiftUI
 import HealthKit
 
 class ViewModel: ObservableObject {
+    // data members to update every change
+    
     @Published var heartRateData: HealthDataPoint = HealthDataPoint(type: "Heart Rate", icon: "heart.fill", unit: "BPM", value: 0.0, time: Date.now, color: .pink)
     @Published var stepsCount: HealthDataPoint = HealthDataPoint(type: "Steps", icon: "flame.fill", unit: "steps", value: 0.0, time: Date.now, color: .orange)
     
@@ -19,9 +21,17 @@ class ViewModel: ObservableObject {
     @Published var workouts = User.sharedInstance.workouts
     @Published var completedWorkouts = User.sharedInstance.completedWorkouts
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
+    @Published var startTime: Date? = nil
     var currentExercise: String? = nil
     
     static let sharedInstance = ViewModel()
+    
+    func getCompletedWorkoutsThisWeek() -> [CompletedWorkout] {
+        let calendar = Calendar.current
+        return completedWorkouts.filter {
+            calendar.isDate($0.date, equalTo: Date.now, toGranularity: .weekOfYear)
+        }
+    }
 }
 
 class ViewController: UIViewController {

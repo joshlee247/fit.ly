@@ -20,8 +20,14 @@ struct HealthGroupBoxStyle<V: View>: GroupBoxStyle {
                 configuration.label.foregroundColor(color)
                 // justify between Label + Time/Chevron
                 Spacer()
-                if date != nil {
-                    Text("\(date!.formatted(date: .omitted, time: .shortened))").font(.footnote).foregroundColor(.secondary).padding(.trailing, 4)
+                if let stamp = date {
+                    if Calendar.current.isDateInToday(stamp) {
+                        Text("\(stamp.formatted(date: .omitted, time: .shortened))").font(.footnote).foregroundColor(.secondary).padding(.trailing, 4)
+                    } else if Calendar.current.isDateInYesterday(stamp) {
+                        Text("Yesterday").font(.footnote).foregroundColor(.secondary).padding(.trailing, 4)
+                    } else {
+                        Text("\(stamp.formatted(date: .numeric, time: .omitted))").font(.footnote).foregroundColor(.secondary).padding(.trailing, 4)
+                    }
                 }
                 Image(systemName: "chevron.right").foregroundColor(Color(.systemGray4)).imageScale(.small)
             }) {

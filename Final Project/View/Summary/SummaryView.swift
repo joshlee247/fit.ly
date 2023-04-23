@@ -44,7 +44,13 @@ struct SummaryView: View {
                 }
                 .groupBoxStyle(TransparentGroupBox())
                 .foregroundColor(.white)
-                .padding(.horizontal)
+                .padding(.vertical)
+                
+                if !vm.getCompletedWorkoutsThisWeek().isEmpty {
+                    CompletedWorkoutsChart(workouts: vm.getCompletedWorkoutsThisWeek())
+                    .padding(.bottom)
+                }
+                
                 VStack(spacing: 8) {
                     if !vm.completedWorkouts.isEmpty {
                         GroupBox(label: Label("Latest Workout", systemImage: "figure.run").font(.system(size: 12, weight: .semibold, design: .rounded))) {
@@ -62,8 +68,10 @@ struct SummaryView: View {
                             }.groupBoxStyle(HealthGroupBoxStyle(color: data.color, destination: Text("\(data.type)"), date: data.time))
                         }
                     }
-                }.padding()
+                }
+                .padding(.bottom)
             }
+            .padding(.horizontal)
             .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
             .navigationTitle("Summary")
         }
