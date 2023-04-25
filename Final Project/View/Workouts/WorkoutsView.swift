@@ -51,6 +51,10 @@ struct WorkoutsView: View {
             .toolbar { EditButton() }
             .navigationBarItems(trailing: addButton)
             .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
+            .navigationViewStyle(.stack)
+            .onAppear {
+                vm.objectWillChange.send()
+            }
         }
     }
 }
@@ -76,7 +80,7 @@ struct WorkoutCell: View {
             }
             .font(.system(size: 24, weight: .bold, design: .default))) {
             HStack {
-                Text(preview).font(.system(size: 14, weight: .regular, design: .rounded))
+                Text((workout.routines.map{String($0.exercise.name)}.joined(separator: ", "))).font(.system(size: 14, weight: .regular, design: .rounded))
                     .foregroundColor(Color(.systemGray)).frame(width: 210, height: 15, alignment: .leading)
                 Spacer()
             }

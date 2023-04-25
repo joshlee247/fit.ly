@@ -25,6 +25,7 @@ struct SingleExerciseView: View {
     @State private var isShowingAddSheet = false
     @State private var isShowingEditSheet = false
     @State private var set_to_edit = -1
+    @State private var workoutNotStarted = false
     
     @State var activity: Activity<TimerAttributes>?
     @State var startTime: Date?
@@ -102,11 +103,22 @@ struct SingleExerciseView: View {
                     .padding(.vertical, 10)
                     .swipeActions(edge: .leading) {
                         Button {
-                            routine.objectWillChange.send()
-                            routine.sets[i].isCompleted.toggle()
-                            print("toggled complete to: \(routine.sets[i].isCompleted)")
-                            updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
-                            
+                            if vm.user.isWorkingOut {
+                                workoutNotStarted = false
+                                routine.objectWillChange.send()
+                                routine.sets[i].isCompleted.toggle()
+                                if (routine.sets[i].isCompleted) {
+                                    vm.user.completedSets.append(CompletedSet(date: Date.now, exercise: routine.routine.exercise, weight: routine.sets[i].weight, reps: routine.sets[i].reps))
+                                    vm.user.save()
+                                } else {
+                                    vm.user.completedSets.removeLast()
+                                    vm.user.save()
+                                }
+                                print("toggled complete to: \(routine.sets[i].isCompleted)")
+                                updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
+                            } else {
+                                workoutNotStarted = true
+                            }
                         } label: {
                             routine.sets[i].isCompleted ? Label("X", systemImage: "xmark.circle.fill") : Label("Completed", systemImage: "checkmark.circle.fill")
                         }
@@ -136,6 +148,9 @@ struct SingleExerciseView: View {
                         .tint(.blue)
                     }
                 }
+            }
+            .alert(isPresented: $workoutNotStarted) {
+                Alert(title: Text("Alert"), message: Text("Make sure you start your workout to save your progress!"), dismissButton: .cancel(Text("Got it!")))
             }
             .navigationBarItems(trailing: addButton)
             .navigationBarTitle(
@@ -178,10 +193,10 @@ struct AddSingleExerciseView: View {
         print(weight)
         routineObj.routine.sets.append(WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
         routineObj.sets.append(WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
+        routineObj.objectWillChange.send()
         vm.user.save()
         
 //        updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
-        
         dismiss()
     }
     

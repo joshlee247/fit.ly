@@ -20,6 +20,7 @@ class ViewModel: ObservableObject {
     @Published var user = User.sharedInstance
     @Published var workouts = User.sharedInstance.workouts
     @Published var completedWorkouts = User.sharedInstance.completedWorkouts
+    @Published var completedSets = User.sharedInstance.completedSets
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
     @Published var startTime: Date? = nil
     var currentExercise: String? = nil
@@ -31,6 +32,15 @@ class ViewModel: ObservableObject {
         return completedWorkouts.filter {
             calendar.isDate($0.date, equalTo: Date.now, toGranularity: .weekOfYear)
         }
+    }
+    
+    func getPersonalBests() -> [CompletedSet] {
+        var records: [CompletedSet] = []
+        let groups = Array(Dictionary(grouping:completedSets){$0.exercise.name}.values)
+        for group in groups {
+            records.append(group.max { $0.weight < $1.weight }!)
+        }
+        return records
     }
 }
 

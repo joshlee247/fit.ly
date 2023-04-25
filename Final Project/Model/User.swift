@@ -10,6 +10,7 @@ import Foundation
 let kWorkoutsArray = "WorkoutsArray"
 let kWorkoutsJson = "Workouts.json"
 let kCompletedWorkoutsJson = "CompletedWorkouts.json"
+let kCompletedSetsJson = "CompletedSets.json"
 // find the Documents directory
 let url = manager.urls(for: .documentDirectory,
                        in: .userDomainMask).first
@@ -17,6 +18,7 @@ let url = manager.urls(for: .documentDirectory,
 class User: Codable, ObservableObject {
     var workouts: [Workout] = []
     var completedWorkouts: [CompletedWorkout] = []
+    var completedSets: [CompletedSet] = []
     var isWorkingOut: Bool
     
 //    init() {
@@ -58,7 +60,31 @@ class User: Codable, ObservableObject {
             }
         }
         
+        if let filepath = url?.appendingPathComponent(kCompletedSetsJson).path {
+            print("filepath=\(filepath)")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: filepath), options: .mappedIfSafe)
+                let jsonResult = try? JSONDecoder().decode([CompletedSet].self, from: data)
+                if let res = jsonResult {
+                    completedSets = res
+                } else {
+                    completedSets = []
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
         isWorkingOut = false
+        
+        // reset all sets in each workout/routine
+        for workout in workouts {
+            for routine in workout.routines {
+                for workingSet in routine.sets {
+                    workingSet.isCompleted = false
+                }
+            }
+        }
     }
     
     func save() {
@@ -83,6 +109,17 @@ class User: Codable, ObservableObject {
             let completedWorkoutsFilePath = "\(url!)/\(kCompletedWorkoutsJson)"
             print(completedWorkoutsFilePath)
             try jsonString.write(to: URL(string: completedWorkoutsFilePath)!, atomically: true, encoding: .utf8)
+        } catch {
+            print(error)
+        }
+        
+        do {
+            // Convert Swift to JSON (data)
+            let data = try encoder.encode(completedSets)
+            let jsonString = String(data: data, encoding: .utf8)!
+            let completedSetsFilePath = "\(url!)/\(kCompletedSetsJson)"
+            print(completedSetsFilePath)
+            try jsonString.write(to: URL(string: completedSetsFilePath)!, atomically: true, encoding: .utf8)
         } catch {
             print(error)
         }

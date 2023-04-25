@@ -33,6 +33,7 @@ struct HealthGroupBoxStyle<V: View>: GroupBoxStyle {
             }) {
                 configuration.content.padding(.top, 3)
             }
-        }.buttonStyle(PlainButtonStyle())
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }

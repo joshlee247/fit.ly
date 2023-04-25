@@ -62,7 +62,7 @@ struct CompletedWorkoutsChart: View {
                         }
                     }
                 }
-            }.groupBoxStyle(LatestWorkoutGroupBoxStyle(color: Color(UIColor.green), destination: Text("Latest Workout"), date: Date.now))
+            }.groupBoxStyle(LatestWorkoutGroupBoxStyle(color: Color(UIColor.green), destination: Text("Latest Workout"), date: nil))
         }
     }
 }

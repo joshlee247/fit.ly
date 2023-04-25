@@ -32,6 +32,11 @@ class CompletedWorkout: Identifiable, Codable, ObservableObject {
     var date: Date
     let timeElapsed: TimeInterval
     
+    init() {
+        self.date = .now
+        self.timeElapsed = 0
+    }
+    
     init(date: Date, timeElapsed: TimeInterval) {
         self.date = date
         self.timeElapsed = timeElapsed
@@ -42,5 +47,19 @@ class CompletedWorkout: Identifiable, Codable, ObservableObject {
         formatter.dateFormat = "MMddyyyy"
         self.date = formatter.date(from: date) ?? Date.distantPast
         self.timeElapsed = timeElapsed
+    }
+}
+
+class CompletedSet: Identifiable, Codable, ObservableObject {
+    var date: Date
+    let exercise: Exercise
+    let weight: Double
+    let reps: Int
+    
+    init(date: Date, exercise: Exercise, weight: Double, reps: Int) {
+        self.date = date
+        self.exercise = exercise
+        self.weight = weight
+        self.reps = reps
     }
 }

@@ -123,7 +123,7 @@ struct WorkoutListView: View {
                         HStack {
                             VStack {
                                 Text(routine.sets.isEmpty ? "--" : "\(routine.sets[0].weight, specifier: "%.0f")")
-                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
                                 Text("LBS")
                                     .font(.system(size: 8, weight: .medium, design: .rounded))
                             }
@@ -134,7 +134,7 @@ struct WorkoutListView: View {
                             .clipShape(Circle())
                             VStack(alignment: .leading) {
                                 Text(routine.exercise.name).font(.system(size: 16, design: .rounded))
-                                Text(routine.sets.isEmpty ? "--" :"\(routine.sets.count) sets, \(routine.sets[0].reps) reps").font(.footnote).foregroundColor(Color(.systemGray))
+                                Text(routine.sets.isEmpty ? "--" : "\(routine.sets.count) sets, \(routine.sets[0].reps) reps").font(.footnote).foregroundColor(Color(.systemGray))
                             }.padding(8)
                         }
                     }
@@ -159,6 +159,9 @@ struct WorkoutListView: View {
             ExerciseListView(routine: exerciseList)
         })
         .navigationBarItems(trailing: addButton)
+        .onAppear {
+            vm.objectWillChange.send()
+        }
     }
 }
 

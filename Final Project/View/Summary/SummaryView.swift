@@ -68,12 +68,29 @@ struct SummaryView: View {
                             }.groupBoxStyle(HealthGroupBoxStyle(color: data.color, destination: Text("\(data.type)"), date: data.time))
                         }
                     }
+                    if !vm.getPersonalBests().isEmpty {
+                        Spacer()
+                        Section(header:
+                            Text("Personal Bests")
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                        ) {
+                            ForEach(vm.getPersonalBests()) { pr in
+                                PersonalBestView(best: pr)
+                            }
+                        }
+                    }
                 }
-                .padding(.bottom)
+                // add padding on the botthom to make fix tab bar
+                .padding(.bottom, 100)
             }
             .padding(.horizontal)
             .background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.bottom)
             .navigationTitle("Summary")
+            .onAppear {
+                vm.objectWillChange.send()
+            }
         }
     }
 }
