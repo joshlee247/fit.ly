@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import HealthKit
+import ActivityKit
 
 class ViewModel: ObservableObject {
     // data members to update every change
@@ -23,6 +24,7 @@ class ViewModel: ObservableObject {
     @Published var completedSets = User.sharedInstance.completedSets
     @Published var weather = WeatherReport(temp: 0, icon: [Conditions(id: 800, main: "Clear", description: "clear sky", icon: "01d")])
     @Published var startTime: Date? = nil
+    @Published var activity: Activity<TimerAttributes>? = nil
     var currentExercise: String? = nil
     
     static let sharedInstance = ViewModel()

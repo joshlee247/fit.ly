@@ -132,6 +132,7 @@ struct SingleExerciseView: View {
                             routine.routine.sets.remove(at: i)
                             routine.sets.remove(at: i)
                             vm.user.save()
+                            updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
                         } label: {
                             Label("Delete", systemImage: "trash.fill")
                         }
@@ -141,7 +142,7 @@ struct SingleExerciseView: View {
                             set_to_edit = Int(i)
                             print("index: \(set_to_edit)")
                             isShowingEditSheet = true
-        
+                            
                         } label: {
                             Label("Edit", systemImage: "square.and.pencil")
                         }
@@ -158,17 +159,23 @@ struct SingleExerciseView: View {
             .listStyle(.plain)
             .sheet(isPresented: $isShowingAddSheet,
                    onDismiss: didDismiss) {
-                AddSingleExerciseView(routineObj: routine, vm: vm)
+                if let a = activity {
+                    AddSingleExerciseView(routineObj: routine, vm: vm, activity: activity, startTime: startTime)
+                } else {
+                    AddSingleExerciseView(routineObj: routine, vm: vm)
+                }
             }
            .sheet(isPresented: $isShowingEditSheet,
                   onDismiss: didDismiss) {
-               EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit)
+               if let a = activity {
+                   EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit, activity: activity, startTime: startTime)
+               } else {
+                   EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit)
+               }
            }
         }
         .onAppear {
             vm.currentExercise = routine.routine.exercise.name
-            print("\(vm.currentExercise)")
-            
             updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
         }
     }
@@ -178,6 +185,9 @@ struct AddSingleExerciseView: View {
     @ObservedObject var routineObj: RoutineObj
     @ObservedObject var vm: ViewModel
     
+    @State var activity: Activity<TimerAttributes>?
+    @State var startTime: Date?
+    
     @Environment(\.dismiss) var dismiss
     
     let weights = Array(stride(from: 0, to: 999, by: 5))
@@ -185,6 +195,20 @@ struct AddSingleExerciseView: View {
     
     @State private var rep_count = 12
     @State private var weight = 100
+    
+    func updateSetsLiveActivity(completed: Int, total: Int) {
+        if let a = activity {
+            var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--", sets_completed: completed, total_sets: total)
+            
+            if let exercise = vm.currentExercise {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total)
+            }
+            
+            Task {
+                await a.update(using: state)
+            }
+        }
+    }
     
     private func saveWorkout() {
         // kinda hacky but it works
@@ -196,7 +220,7 @@ struct AddSingleExerciseView: View {
         routineObj.objectWillChange.send()
         vm.user.save()
         
-//        updateSetsLiveActivity(completed: routine.routine.getSetsCompleted(), total: routine.routine.sets.count)
+        updateSetsLiveActivity(completed: routineObj.routine.getSetsCompleted(), total: routineObj.routine.sets.count)
         dismiss()
     }
     
@@ -251,6 +275,9 @@ struct EditSingleExerciseView: View {
     @ObservedObject var vm: ViewModel
     @Binding var index: Int
     
+    @State var activity: Activity<TimerAttributes>?
+    @State var startTime: Date?
+    
     @Environment(\.dismiss) var dismiss
     
     let weights = Array(stride(from: 0, to: 999, by: 5))
@@ -258,6 +285,20 @@ struct EditSingleExerciseView: View {
     
     @State private var rep_count = 12
     @State private var weight = 100
+    
+    func updateSetsLiveActivity(completed: Int, total: Int) {
+        if let a = activity {
+            var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--", sets_completed: completed, total_sets: total)
+            
+            if let exercise = vm.currentExercise {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total)
+            }
+            
+            Task {
+                await a.update(using: state)
+            }
+        }
+    }
     
     private func saveWorkout() {
         // kinda hacky but it works
@@ -269,6 +310,7 @@ struct EditSingleExerciseView: View {
         routineObj.routine.sets[index] = (WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
         routineObj.sets[index] = (WorkingSet(id: UUID(), weight: Double(weight), reps: rep_count, isCompleted: false))
         vm.user.save()
+        updateSetsLiveActivity(completed: routineObj.routine.getSetsCompleted(), total: routineObj.routine.sets.count)
         dismiss()
     }
     

@@ -79,7 +79,7 @@ struct WorkoutListView: View {
                 state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: exercise)
             }
             
-            activity = try? Activity<TimerAttributes>.request(attributes: attributes, contentState: state, pushType: nil)
+            vm.activity = try? Activity<TimerAttributes>.request(attributes: attributes, contentState: state, pushType: nil)
         } else {
             guard let startTime else { return }
             // stop live activity
@@ -90,7 +90,7 @@ struct WorkoutListView: View {
             }
             
             Task {
-                await activity?.end(using: state, dismissalPolicy: .immediate)
+                await vm.activity?.end(using: state, dismissalPolicy: .immediate)
             }
             
             vm.completedWorkouts.append(CompletedWorkout(date: Date.now, timeElapsed: Date.now.timeIntervalSince(startTime)))
@@ -100,6 +100,7 @@ struct WorkoutListView: View {
             self.startTime = nil
             vm.startTime = nil
             vm.user.isWorkingOut = false
+            vm.activity = nil
         }
     }
 
@@ -111,7 +112,7 @@ struct WorkoutListView: View {
         }
         
         Task {
-            await activity?.update(using: state)
+            await vm.activity?.update(using: state)
         }
     }
     
@@ -119,7 +120,7 @@ struct WorkoutListView: View {
         VStack {
             List {
                 ForEach(workout.routines) { routine in
-                    NavigationLink(destination: SingleExerciseView(vm: vm, routine: RoutineObj(routine: routine, sets: routine.sets), activity: activity, startTime: startTime)) {
+                    NavigationLink(destination: SingleExerciseView(vm: vm, routine: RoutineObj(routine: routine, sets: routine.sets), activity: vm.activity, startTime: startTime)) {
                         HStack {
                             VStack {
                                 Text(routine.sets.isEmpty ? "--" : "\(routine.sets[0].weight, specifier: "%.0f")")

@@ -20,7 +20,7 @@ struct CompletedWorkoutsChart: View {
                         $0.timeElapsed / 60
                     }
                     .reduce(0.0, +) / Double(workouts.count)
-                    Text("You averaged \(average, format: .number.precision(.fractionLength(0))) minutes of exercise this week.").font(.system(size: 12, weight: .semibold, design: .rounded))
+                    Text("You averaged \(average, format: .number.precision(.fractionLength(0))) minutes of exercise per workout this week.").font(.system(size: 12, weight: .semibold, design: .rounded))
                         .padding(.vertical, 2)
                     Divider()
                     ZStack(alignment: .leading) {
