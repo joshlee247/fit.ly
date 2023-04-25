@@ -15,11 +15,17 @@ class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdatin
     var filteredExercises: [Exercise]?
     let user = User.sharedInstance
     
+    let spinner = UIActivityIndicatorView()
+    
     func loadExercises() {
         model.getExercises(onSuccess: { exercises in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.model.exercises = exercises
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+                self.filteredExercises = self.model.exercises
+                self.tableView.reloadData()
             }
         })
     }
@@ -44,6 +50,13 @@ class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdatin
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        spinner.style = .medium
+        spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        spinner.startAnimating()
+
+        tableView.backgroundView = spinner
+        
         loadExercises()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
         searchController.searchResultsUpdater = self

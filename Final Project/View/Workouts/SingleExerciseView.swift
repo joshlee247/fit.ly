@@ -160,7 +160,7 @@ struct SingleExerciseView: View {
             .sheet(isPresented: $isShowingAddSheet,
                    onDismiss: didDismiss) {
                 if let a = activity {
-                    AddSingleExerciseView(routineObj: routine, vm: vm, activity: activity, startTime: startTime)
+                    AddSingleExerciseView(routineObj: routine, vm: vm, activity: a, startTime: startTime)
                 } else {
                     AddSingleExerciseView(routineObj: routine, vm: vm)
                 }
@@ -168,7 +168,7 @@ struct SingleExerciseView: View {
            .sheet(isPresented: $isShowingEditSheet,
                   onDismiss: didDismiss) {
                if let a = activity {
-                   EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit, activity: activity, startTime: startTime)
+                   EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit, activity: a, startTime: startTime)
                } else {
                    EditSingleExerciseView(routineObj: routine, vm: vm, index: $set_to_edit)
                }
