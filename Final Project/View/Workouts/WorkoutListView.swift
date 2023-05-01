@@ -72,12 +72,21 @@ struct WorkoutListView: View {
             startTime = .now
             // start live activity
             let attributes = TimerAttributes()
-            let state = TimerAttributes.TimerStatus(startTime: .now)
+            var state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
+            
+            if let exercise = vm.currentExercise {
+                state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: exercise)
+            }
+            
             activity = try? Activity<TimerAttributes>.request(attributes: attributes, contentState: state, pushType: nil)
         } else {
             guard let startTime else { return }
             // stop live activity
-            let state = TimerAttributes.TimerStatus(startTime: startTime)
+            var state = TimerAttributes.TimerStatus(startTime: startTime, currentExercise: "--")
+            
+            if let exercise = vm.currentExercise {
+                state = TimerAttributes.TimerStatus(startTime: startTime, currentExercise: exercise)
+            }
             
             Task {
                 await activity?.end(using: state, dismissalPolicy: .immediate)
@@ -90,7 +99,11 @@ struct WorkoutListView: View {
     }
 
     func updateActivity() {
-        let state = TimerAttributes.TimerStatus(startTime: .now)
+        var state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
+        
+        if let exercise = vm.currentExercise {
+            state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: exercise)
+        }
         
         Task {
             await activity?.update(using: state)
@@ -101,13 +114,13 @@ struct WorkoutListView: View {
         VStack {
             List {
                 ForEach(workout.routines) { routine in
-                    NavigationLink(destination: SingleExerciseView(vm: vm, routine: RoutineObj(routine: routine, sets: routine.sets))) {
+                    NavigationLink(destination: SingleExerciseView(vm: vm, routine: RoutineObj(routine: routine, sets: routine.sets), activity: activity, startTime: startTime)) {
                         HStack {
                             VStack {
                                 Text(routine.sets.isEmpty ? "--" : "\(routine.sets[0].weight, specifier: "%.0f")")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
                                 Text("LBS")
-                                .font(.system(size: 8, weight: .medium, design: .rounded))
+                                    .font(.system(size: 8, weight: .medium, design: .rounded))
                             }
                             .frame(width: 45, height: 45)
                             .foregroundColor(Color.white)
