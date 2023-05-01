@@ -9,6 +9,8 @@ import Foundation
 import ActivityKit
 import SwiftUI
 
+// Attributes to update on Live Activity
+
 struct TimerAttributes: ActivityAttributes {
     public typealias TimerStatus = ContentState
     
@@ -17,6 +19,6 @@ struct TimerAttributes: ActivityAttributes {
         var currentExercise: String?
         var sets_completed: Int?
         var total_sets: Int?
-//        var heartrate: Double
+        var heartRate: Double?
     }
 }

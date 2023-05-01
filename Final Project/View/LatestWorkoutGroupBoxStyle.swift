@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// styling for latest workout
+
 struct LatestWorkoutGroupBoxStyle<V: View>: GroupBoxStyle {
     var color: Color
     var destination: V

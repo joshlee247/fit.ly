@@ -42,7 +42,7 @@ struct SummaryView: View {
                         }
                     }
                 }
-                .groupBoxStyle(TransparentGroupBox())
+                .groupBoxStyle(WeatherGroupBoxStyle())
                 .foregroundColor(.white)
                 .padding(.vertical)
                 

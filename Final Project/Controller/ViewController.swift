@@ -10,9 +10,11 @@ import SwiftUI
 import HealthKit
 import ActivityKit
 
+// 
+
 class ViewModel: ObservableObject {
-    // data members to update every change
     
+    // data members to update every change
     @Published var heartRateData: HealthDataPoint = HealthDataPoint(type: "Heart Rate", icon: "heart.fill", unit: "BPM", value: 0.0, time: Date.now, color: .pink)
     @Published var stepsCount: HealthDataPoint = HealthDataPoint(type: "Steps", icon: "flame.fill", unit: "steps", value: 0.0, time: Date.now, color: .orange)
     
@@ -89,7 +91,7 @@ class ViewController: UIViewController {
                     self.heartRateData = data
                     if self.heartRateData.count != 0 {
                         DispatchQueue.main.async {
-                            // Reload table view or update UI with heart rate data
+                            // update UI with heart rate data
                             contentView.updateHeartRate(heartRate: self.heartRateData[0])
                             contentView.vm.data[0] = self.heartRateData[0]
                         }
@@ -99,7 +101,7 @@ class ViewController: UIViewController {
             // steps
             data.getStepsData { steps in
                 DispatchQueue.main.async {
-                    // Reload table view or update UI with heart rate data
+                    // update UI with heart steps data
                     contentView.updateStepCount(steps: steps)
                     contentView.vm.data[1] = steps
                 }
@@ -108,8 +110,49 @@ class ViewController: UIViewController {
             // active energy
             data.getActiveCalsBurned { cals in
                 DispatchQueue.main.async {
-                    // Reload table view or update UI with heart rate data
+                    // update UI with calories data
                     contentView.vm.data[2] = cals
+                }
+            }
+        }
+    }
+    
+    // queries HealthKit data every time view loads
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadWeather()
+        
+        // get health data from HealthKit
+        if HKHealthStore.isHealthDataAvailable() {
+            // heart rate
+            data.getHeartRateData { (data, error) in
+                if let error = error {
+                    print("An error occurred while querying for heart rate data: \(error.localizedDescription)")
+                    return
+                }
+
+                if let data = data {
+                    self.heartRateData = data
+                    if self.heartRateData.count != 0 {
+                        DispatchQueue.main.async {
+                            // Reload table view or update UI with heart rate data
+                            self.vm.data[0] = self.heartRateData[0]
+                        }
+                    }
+                }
+            }
+            // steps
+            data.getStepsData { steps in
+                DispatchQueue.main.async {
+                    // Reload table view or update UI with heart rate data
+                    self.vm.data[1] = steps
+                }
+            }
+            
+            // active energy
+            data.getActiveCalsBurned { cals in
+                DispatchQueue.main.async {
+                    // Reload table view or update UI with heart rate data
+                    self.vm.data[2] = cals
                 }
             }
         }

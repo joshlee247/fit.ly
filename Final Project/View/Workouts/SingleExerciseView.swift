@@ -8,6 +8,8 @@
 import SwiftUI
 import ActivityKit
 
+// displays list of sets in selected exercise
+
 class RoutineObj: ObservableObject {
     @Published var routine: Routine
     @Published var sets: [WorkingSet]
@@ -38,8 +40,16 @@ struct SingleExerciseView: View {
         if let a = activity {
             var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--", sets_completed: completed, total_sets: total)
             
+            if vm.data[0].value != 0 {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, heartRate: vm.data[0].value)
+            }
+            
             if let exercise = vm.currentExercise {
                 state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total)
+                
+                if vm.data[0].value != 0 {
+                    state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total, heartRate: vm.data[0].value)
+                }
             }
             
             Task {
@@ -290,8 +300,16 @@ struct EditSingleExerciseView: View {
         if let a = activity {
             var state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: "--", sets_completed: completed, total_sets: total)
             
+            if vm.data[0].value != 0 {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, heartRate: vm.data[0].value)
+            }
+            
             if let exercise = vm.currentExercise {
                 state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total)
+                
+                if vm.data[0].value != 0 {
+                    state = TimerAttributes.TimerStatus(startTime: startTime!, currentExercise: exercise, sets_completed: completed, total_sets: total, heartRate: vm.data[0].value)
+                }
             }
             
             Task {

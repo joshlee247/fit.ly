@@ -21,16 +21,19 @@ class ExerciseModel {
     let ACCESS_KEY = "94b9f1d21f0b74b3f8674480a8bbebaec4fad7e0"
     let BASE_URL = "https://wger.de/"
     
+    // gets exercises from wger.de API
     func getExercises(onSuccess: @escaping ([Exercise]) -> Void) {
         print("called getExercises")
         if let filepath = jsonUrl?.appendingPathComponent(kExercisesJson).path {
             print("filepath=\(filepath)")
             do {
+                // use saved json file for faster loading if available
                 print("JSON available")
                   let data = try Data(contentsOf: URL(fileURLWithPath: filepath), options: .mappedIfSafe)
                   let jsonResult = try? JSONDecoder().decode([Exercise].self, from: data)
                   exercises = jsonResult!
             } catch {
+                // otherwise send GET request to API
                 print("No JSON available")
                 if let url = URL(string: "\(BASE_URL)api/v2/exercise/?limit=999&language=2") {
                     var urlRequest = URLRequest(url: url)
@@ -43,6 +46,7 @@ class ExerciseModel {
                                 self.exercises = res.results
                                 print(self.exercises.count)
                                 onSuccess(self.exercises)
+                                
                                 // Convert Swift to JSON (data)
                                 print("Saving exercises to JSON")
                                 let encoder = JSONEncoder()
@@ -55,7 +59,7 @@ class ExerciseModel {
                             } catch let error {
                                 print(error)
                                 // Handle decoding error...
-                                exit(1)
+                                self.exercises = []
                             }
                         }
                     }.resume()

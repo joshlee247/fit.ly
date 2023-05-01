@@ -9,6 +9,8 @@ import SwiftUI
 import Charts
 import Foundation
 
+// displays Average Workout Time Chart
+
 struct CompletedWorkoutsChart: View {
     let workouts: [CompletedWorkout]
         

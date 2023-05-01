@@ -21,6 +21,7 @@ class User: Codable, ObservableObject {
     var completedSets: [CompletedSet] = []
     var isWorkingOut: Bool
     
+//    #DEBUG
 //    init() {
 //        workouts = [
 //            Workout(title: "Test", routines: [Routine(id: 0, exercise: Exercise(id: 0, name: "Test", description: "Test", exercise_base: 0), sets: [WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false), WorkingSet(id: UUID(), weight: 123, reps: 12, isCompleted: false)])])
@@ -30,6 +31,8 @@ class User: Codable, ObservableObject {
 //    }
 //
     init() {
+        // retrieves User's saved workout data from JSON file for faster load times
+        // data stored on device for privacy reasons
         if let filepath = url?.appendingPathComponent(kWorkoutsJson).path {
             print("filepath=\(filepath)")
             do {
@@ -45,6 +48,7 @@ class User: Codable, ObservableObject {
             }
         }
         
+        // retrieves User's completed workouts from JSON file
         if let filepath = url?.appendingPathComponent(kCompletedWorkoutsJson).path {
             print("filepath=\(filepath)")
             do {
@@ -60,6 +64,7 @@ class User: Codable, ObservableObject {
             }
         }
         
+        // retrieves User's completed sets from JSON file
         if let filepath = url?.appendingPathComponent(kCompletedSetsJson).path {
             print("filepath=\(filepath)")
             do {
@@ -87,8 +92,8 @@ class User: Codable, ObservableObject {
         }
     }
     
+    // save current user's session's data to file
     func save() {
-        // Step 2: Use an encoder to encode
         let encoder = JSONEncoder()
 
         do {

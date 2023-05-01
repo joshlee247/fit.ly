@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TableView Controller for list of Exercises from wger.de API
+
 class WorkoutsTableViewController: UITableViewController, UISearchResultsUpdating {
     var routine: ExerciseList?
 

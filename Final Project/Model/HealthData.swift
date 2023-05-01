@@ -27,6 +27,7 @@ struct HealthData {
     
     let healthStore: HKHealthStore = HKHealthStore()
     
+    // types of HealthKit data queried
     let allTypes = Set([HKObjectType.workoutType(),
                         HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
                         HKObjectType.quantityType(forIdentifier: .distanceCycling)!,
@@ -47,6 +48,7 @@ struct HealthData {
             HKObjectType.quantityType(forIdentifier: .heartRate)!
         ]
 
+        // request authorization from user
         healthStore.requestAuthorization(toShare: write, read: read) { success, error in
             if success {
                 print("HEALTH DATA AUTHORIZED")
@@ -64,6 +66,7 @@ struct HealthData {
 
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
 
+        // create health kit query for heart rate
         let queryHeartRate = HKSampleQuery(sampleType: heartRateType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]) { (query, results, error) in
             guard let results = results as? [HKQuantitySample] else {
                 completion(nil, error)
@@ -78,10 +81,11 @@ struct HealthData {
                 let time = sample.startDate
 
                 let data = HealthDataPoint(type: "Heart Rate", icon: "heart.fill", unit: "BPM", value: heartRate, time: time, color: .pink)
+                // store heart rate data point
                 heartRateData.append(data)
                 print("appending new data: \(data)")
             }
-
+            // return array of data points
             completion(heartRateData, nil)
         }
         HKHealthStore().execute(queryHeartRate)
@@ -98,6 +102,7 @@ struct HealthData {
             options: .strictStartDate
         )
         
+        // create health kit query for steps
         let query = HKStatisticsQuery(
             quantityType: stepsQuantityType,
             quantitySamplePredicate: predicate,
@@ -107,6 +112,7 @@ struct HealthData {
                 completion(HealthDataPoint(type: "Steps", icon: "flame.fill", unit: "steps", value: 0.0, time: now, color: .orange))
                 return
             }
+            // return steps data
             completion(HealthDataPoint(type: "Steps", icon: "flame.fill", unit: "steps", value: sum.doubleValue(for: HKUnit.count()), time: now, color: .orange))
         }
         HKHealthStore().execute(query)
@@ -123,6 +129,7 @@ struct HealthData {
             options: .strictStartDate
         )
         
+        // create active calories burned query
         let query = HKStatisticsQuery(
             quantityType: activeCalsType,
             quantitySamplePredicate: predicate,
@@ -132,6 +139,7 @@ struct HealthData {
                 completion(HealthDataPoint(type: "Active Energy", icon: "flame.fill", unit: "cal", value: 0.0, time: now, color: .orange))
                 return
             }
+            // return calories data
             completion(HealthDataPoint(type: "Active Energy", icon: "flame.fill", unit: "cal", value: sum.doubleValue(for: HKUnit.largeCalorie()), time: now, color: .orange))
         }
         HKHealthStore().execute(query)

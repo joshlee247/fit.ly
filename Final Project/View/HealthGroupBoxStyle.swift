@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// styling for health data cell in SummaryView
+
 struct HealthGroupBoxStyle<V: View>: GroupBoxStyle {
     var color: Color
     var destination: V

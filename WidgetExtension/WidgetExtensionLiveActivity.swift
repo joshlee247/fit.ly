@@ -37,7 +37,7 @@ struct WorkoutActivityView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Image("logo")
+            Image("small_logo")
                 .resizable()
                 .frame(width: 25, height: 25)
                 .cornerRadius(6)
@@ -47,13 +47,15 @@ struct WorkoutActivityView: View {
                 )
             HStack {
                 HStack {
-                    Image(systemName: "heart.fill")
-                        .font(Font.system(.subheadline).bold()).foregroundColor(.pink)
-                        .frame(width: 10)
-                        .padding(.leading, 2)
-                        .shadow(color: .pink, radius: 3)
-            
-                    Text("56").font(.system(size: 24, weight: .semibold, design: .rounded)) + Text(" BPM").font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundColor(.secondary)
+                    if let heartRate = context.state.heartRate {
+                        Image(systemName: "heart.fill")
+                            .font(Font.system(.subheadline).bold()).foregroundColor(.pink)
+                            .frame(width: 10)
+                            .padding(.leading, 2)
+                            .shadow(color: .pink, radius: 3)
+                        
+                        Text("\(heartRate, specifier: "%.0f")").font(.system(size: 24, weight: .semibold, design: .rounded)) + Text(" BPM").font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundColor(.secondary)
+                    }
                 }
                 Spacer()
                 Text(context.state.startTime, style: .timer).font(.system(size: 36, weight: .semibold, design: .rounded))
@@ -99,7 +101,9 @@ struct WidgetExtensionLiveActivity: Widget {
                                 .frame(width: 10)
                                 .padding(.leading, 2)
                                 .shadow(color: .pink, radius: 3)
-                            Text("56").font(.system(size: 24, weight: .semibold, design: .rounded)) + Text(" BPM").font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundColor(.secondary)
+                            if let heartRate = context.state.heartRate {
+                                Text("\(heartRate, specifier: "%.0f")").font(.system(size: 24, weight: .semibold, design: .rounded)) + Text(" BPM").font(.system(size: 14, weight: .semibold, design: .rounded)).foregroundColor(.secondary)
+                            }
                         }
                         .padding(.leading)
                     }
@@ -114,11 +118,17 @@ struct WidgetExtensionLiveActivity: Widget {
                     // more content
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
-                            Label("Bench Press", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
+                            if let currentExercise = context.state.currentExercise {
+                                Label("\(currentExercise)", systemImage: "dumbbell.fill").font(.system(size: 12, weight: .semibold, design: .rounded)).foregroundColor(.pink)
+                            }
                             Spacer()
-                            Text("2 sets remaining").font(.system(size: 12, weight: .regular, design: .rounded)).foregroundColor(Color(UIColor.systemGray))
+                            if let completed = context.state.sets_completed, let total = context.state.total_sets {
+                                Text("\(total - completed) sets remaining").font(.system(size: 12, weight: .regular, design: .rounded)).foregroundColor(Color(UIColor.systemGray))
+                            }
                         }
-                        ProgressView("", value: 50, total: 100)
+                        if let completed = context.state.sets_completed, let total = context.state.total_sets {
+                            ProgressView("", value: (((Double(completed) / Double(total)) * 100)), total: 100)
+                        }
                     }
                     .progressViewStyle(RoundedRectProgressViewStyle())
                     .activitySystemActionForegroundColor(Color.black)
@@ -142,7 +152,7 @@ struct WidgetExtensionLiveActivity: Widget {
 
 struct WidgetExtensionLiveActivity_Previews: PreviewProvider {
     static let attributes = TimerAttributes()
-    static let contentState = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
+    static let contentState = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--", heartRate: 75.0)
 
     static var previews: some View {
         attributes

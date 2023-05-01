@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in TestCell.body.getter:WorkoutsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "workout">
+            </PersistentString>
+            <PersistentString
+               value = "vm.user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in closure #1 in WorkoutListView.body.getter:WorkoutListView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "property wrapper backing initializer of SingleExerciseView.activity:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "activity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "User.save():User.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "workouts">
+            </PersistentString>
+            <PersistentString
+               value = "completedWorkouts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in SummaryView.body.getter:SummaryView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.getCompletedWorkoutsThisWeek()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutListView.vm.getter:WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ViewController.viewDidLoad():ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ViewController.viewDidLoad():ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SummaryView.updateHeartRate(heartRate:):SummaryView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.heartRateData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutsViewController.viewDidLoad():WorkoutsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "HealthData.init():HealthData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "success">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddSingleExerciseView.saveWorkout():SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "routineObj.routine.getSetsCompleted()">
+            </PersistentString>
+            <PersistentString
+               value = "vm.workouts">
+            </PersistentString>
+            <PersistentString
+               value = "routineObj">
+            </PersistentString>
+            <PersistentString
+               value = "routineObj.routine">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Routine.getSetsCompleted():Routine.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #3 in closure #1 in closure #2 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int?(i)">
+            </PersistentString>
+            <PersistentString
+               value = "_set_to_edit">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in WorkoutListView.body.getter:WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_activity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleExerciseView.updateSetsLiveActivity(completed:total:):SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.data[0].value">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ExerciseDetailViewController.viewDidLoad():ExerciseDetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in SummaryView.body.getter:SummaryView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditSingleExerciseView.saveWorkout():SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_routineObj">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ExerciseDetailViewController.viewDidLoad():ExerciseDetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WorkoutListView.startTimer():WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.activity">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewModel.getPersonalBests():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "completedSets">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutsView.deleteWorkout(at:):WorkoutsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.workouts">
+            </PersistentString>
+            <PersistentString
+               value = "vm.user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WorkoutActivityView.body.getter:WidgetExtensionLiveActivity.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "context.state.total_sets">
+            </PersistentString>
+            <PersistentString
+               value = "context.state.sets_completed">
+            </PersistentString>
+            <PersistentString
+               value = "completed/total">
+            </PersistentString>
+            <PersistentString
+               value = "((Double(completed) / Double(total)) * 100)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "User.updateWorkout(id:workout:):User.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "workouts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in HealthGroupBoxStyle.makeBody(configuration:):HealthGroupBoxStyle.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in closure #1 in SummaryView.body.getter:SummaryView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.completedWorkouts[vm.completedWorkouts.count - 1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ExerciseDetailViewController.viewDidLoad():ExerciseDetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutsTableViewController.tableView(_:cellForRowAt:):WorkoutsTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "item.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.viewDidLoad():ViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in markAsCompleteActionButton(workingSet:):SingleExerciseView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_set_to_edit">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in closure #1 in closure #2 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleExerciseView.addWorkout():SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "routine.routine">
+            </PersistentString>
+            <PersistentString
+               value = "routine">
+            </PersistentString>
+            <PersistentString
+               value = "routine.sets">
+            </PersistentString>
+            <PersistentString
+               value = "vm.user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in closure #1 in closure #1 in SummaryView.body.getter:SummaryView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.completedWorkouts">
+            </PersistentString>
+            <PersistentString
+               value = "vm.completedWorkouts[0].timeElapsed">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ExerciseDetailViewController.getImageURL(onSuccess:):ExerciseDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "&quot;\(BASE_URL)api/v2/exerciseimage/?exercise_base=\(selectedExercise.exercise_base)&amp;limit=1&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in closure #1 in closure #2 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "routine.routine.sets">
+            </PersistentString>
+            <PersistentString
+               value = "routine.sets">
+            </PersistentString>
+            <PersistentString
+               value = "routine.sets[i].isCompleted">
+            </PersistentString>
+            <PersistentString
+               value = "vm.user.completedSets">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "User.init():User.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "completedWorkouts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in WorkoutListView.body.getter:WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "exerciseList.routines">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in ViewController.viewDidAppear(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.heartRateData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutListView.startTimer():WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm">
+            </PersistentString>
+            <PersistentString
+               value = "vm.user.isWorkingOut">
+            </PersistentString>
+            <PersistentString
+               value = "vm.completedWorkouts">
+            </PersistentString>
+            <PersistentString
+               value = "vm.data[0].value">
+            </PersistentString>
+            <PersistentString
+               value = "exerciseList.user.isWorkingOut">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutListView.onDelete(offsets:):WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.user.workouts">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutsTableViewController.tableView(_:didSelectRowAt:):WorkoutsTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static AppDelegate.$main():AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ExerciseModel.getExercises(onSuccess:):ExerciseModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #3 in closure #1 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "routine.sets">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddSingleExerciseView.updateSetsLiveActivity(completed:total:):SingleExerciseView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "routineObj.routine.getSetsCompleted()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HealthData.getHeartRate():HealthData.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in WorkoutListView.body.getter:WorkoutListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.user.isWorkingOut">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "WorkoutsView.addWorkout():WorkoutsView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vm.user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in SingleExerciseView.body.getter:SingleExerciseView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #1 in closure #1 in SummaryView.body.getter:SummaryView.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// displays Workouts page
+
 struct WorkoutsView: View {
     @ObservedObject var vm: ViewModel
     @State private var editMode = EditMode.inactive

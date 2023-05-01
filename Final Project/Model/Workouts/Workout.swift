@@ -42,6 +42,7 @@ class CompletedWorkout: Identifiable, Codable, ObservableObject {
         self.timeElapsed = timeElapsed
     }
     
+    // constructor for preview debugging
     init(date: String, timeElapsed: TimeInterval) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMddyyyy"

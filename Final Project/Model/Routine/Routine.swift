@@ -20,6 +20,7 @@ class Routine: Identifiable, Codable, ObservableObject {
         self.isCurrent = false
     }
     
+    // gets number of completed sets in routine
     func getSetsCompleted() -> Int {
         var count = 0
         for s in sets {
@@ -30,6 +31,8 @@ class Routine: Identifiable, Codable, ObservableObject {
         return count
     }
     
+    // returns true if all sets are completed
+    // returns false otherwise
     func isCompleted() -> Bool {
         for s in sets {
             if !s.isCompleted {

@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct TransparentGroupBox: GroupBoxStyle {
+
+
+struct WeatherGroupBoxStyle: GroupBoxStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             HStack {

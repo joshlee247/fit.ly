@@ -7,6 +7,7 @@
 
 import Foundation
 
+// struct for wger.de API response
 struct Response: Decodable {
     var results: [Exercise]
 }

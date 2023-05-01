@@ -9,6 +9,8 @@ import SwiftUI
 import Foundation
 import ActivityKit
 
+// displays list of exercises in selected workout
+
 class ExerciseList: ObservableObject {
     @Published var workout: Workout
     @Published var routines: [Routine]
@@ -75,8 +77,16 @@ struct WorkoutListView: View {
             let attributes = TimerAttributes()
             var state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: "--")
             
+            if vm.data[0].value != 0 {
+                state = TimerAttributes.TimerStatus(startTime: startTime!, heartRate: vm.data[0].value)
+            }
+            
             if let exercise = vm.currentExercise {
                 state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: exercise)
+                
+                if vm.data[0].value != 0 {
+                    state = TimerAttributes.TimerStatus(startTime: .now, currentExercise: exercise, heartRate: vm.data[0].value)
+                }
             }
             
             vm.activity = try? Activity<TimerAttributes>.request(attributes: attributes, contentState: state, pushType: nil)
@@ -85,12 +95,21 @@ struct WorkoutListView: View {
             // stop live activity
             var state = TimerAttributes.TimerStatus(startTime: startTime, currentExercise: "--")
             
+            if vm.data[0].value != 0 {
+                state = TimerAttributes.TimerStatus(startTime: startTime, heartRate: vm.data[0].value)
+            }
+            
             if let exercise = vm.currentExercise {
                 state = TimerAttributes.TimerStatus(startTime: startTime, currentExercise: exercise)
+                
+                if vm.data[0].value != 0 {
+                    state = TimerAttributes.TimerStatus(startTime: startTime, currentExercise: exercise, heartRate: vm.data[0].value)
+                }
             }
             
             Task {
                 await vm.activity?.end(using: state, dismissalPolicy: .immediate)
+                vm.activity = nil
             }
             
             vm.completedWorkouts.append(CompletedWorkout(date: Date.now, timeElapsed: Date.now.timeIntervalSince(startTime)))
@@ -100,7 +119,6 @@ struct WorkoutListView: View {
             self.startTime = nil
             vm.startTime = nil
             vm.user.isWorkingOut = false
-            vm.activity = nil
         }
     }
 

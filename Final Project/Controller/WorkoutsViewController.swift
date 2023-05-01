@@ -9,6 +9,8 @@ import UIKit
 import SwiftUI
 import HealthKit
 
+// merge Storyboard and SwiftUI WorkoutsView
+
 class WorkoutsViewController: UIViewController {
 
     let data = HealthData()

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// styling for each Workout cell
+
 struct WorkoutGroupBox<V: View>: GroupBoxStyle {
     var color: Color
     var destination: V
